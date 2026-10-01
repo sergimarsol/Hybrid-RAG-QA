@@ -1,0 +1,50 @@
+generation model comparison
+
+api-gemma-4-26b
+"F1@2": 0.7037037037037036,
+"Precision@2": 0.6333333333333333,
+"Recall@2": 0.8611111111111112,
+"Retrieval Score": 0.7327160493827161
+⚠️  Judge failures: 1
+Average Correctness:  0.422 / 1
+Average Completeness: 1.067 / 5
+Average Faithfulness: 0.400 / 1
+Average Overall:      0.270 / 1
+
+api-gpt-oss-120b
+"F1@2": 0.7037037037037036,
+"Precision@2": 0.6333333333333333,
+"Recall@2": 0.8611111111111112,
+"Retrieval Score": 0.7327160493827161
+Average Correctness:  0.889 / 1
+Average Completeness: 3.733 / 5
+Average Faithfulness: 0.978 / 1
+Average Overall:      0.800 / 1
+
+claude-sonnet-4-6
+"F1@2": 0.7037037037037036,
+"Precision@2": 0.6333333333333333,
+"Recall@2": 0.8611111111111112,
+"Retrieval Score": 0.7327160493827161
+Average Correctness:  0.889 / 1
+Average Completeness: 4.044 / 5
+Average Faithfulness: 0.978 / 1
+Average Overall:      0.844 / 1
+
+minimax.minimax-m2
+Average Correctness:  0.689 / 1
+Average Completeness: 2.467 / 5
+Average Faithfulness: 0.711 / 1
+Average Overall:      0.552 / 1
+
+moonshotai.kimi-k2.5
+Average Correctness:  0.867 / 1
+Average Completeness: 3.889 / 5
+Average Faithfulness: 0.956 / 1
+Average Overall:      0.816 / 1
+
+us.amazon.nova-2-lite-v1:0
+Average Correctness:  0.844 / 1
+Average Completeness: 3.778 / 5
+Average Faithfulness: 0.956 / 1
+Average Overall:      0.797 / 1

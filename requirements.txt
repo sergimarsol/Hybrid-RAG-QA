@@ -1,0 +1,27 @@
+# RAG Pipeline Requirements
+# Python 3.9+
+
+# Core dependencies
+langchain>=0.3.28
+langchain-core>=0.3.73
+langchain-text-splitters>=0.3.9
+langchain-community>=0.0.0
+
+# Embeddings & Vector Search
+sentence-transformers>=5.1.2
+faiss-cpu>=1.13.0
+
+# LLM APIs
+openai>=2.30.0
+
+# Data processing
+numpy>=1.22.0,<2.0.0
+pandas>=2.0.0
+
+# Utilities
+tqdm>=4.65.0
+pyyaml>=6.0
+
+# Development (optional)
+pytest>=7.0.0
+jupyter>=1.0.0

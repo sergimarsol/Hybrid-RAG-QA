@@ -1,0 +1,660 @@
+[
+  {
+    "question_id": 1,
+    "question": "What are the two knob set generators supported in RapidFire AI, and how do they differ?",
+    "answer": "RapidFire AI supports two knob set generators: List() and Range(). List() defines a discrete set of values of the same type, while Range() specifies a continuous interval and samples values uniformly between a start and end with a given data type (int or float).",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "configs.rst",
+        16,
+        51
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 2,
+    "question": "What is the purpose of RFGridSearch?",
+    "answer": "RFGridSearch performs exhaustive grid search over configuration combinations.",
+    "answer_type": "conceptual",
+    "source_evidence": [
+      [
+        "configs.rst",
+        55,
+        102
+      ]
+    ],
+    "confidence": "medium"
+  },
+  {
+    "question_id": 3,
+    "question": "What parameters are required to instantiate a new Experiment constructor, and what parameters are optional?",
+    "answer": "The Experiment constructor requires experiment_name, and optional parameters include mode and experiments_path.",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "experiment.rst",
+        12,
+        41
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 4,
+    "question": "What are the two stages of the RAG pipeline?",
+    "answer": "Document Preprocessing and Query Processing.",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "ragspecs.rst",
+        20,
+        38
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 6,
+    "question": "How does RapidFire AI improve experimentation compared to sequential execution?",
+    "answer": "It enables parallel experimentation with dynamic control over multiple configurations.",
+    "answer_type": "conceptual",
+    "source_evidence": [
+      [
+        "difference.rst",
+        1,
+        75
+      ]
+    ],
+    "confidence": "medium"
+  },
+  {
+    "question_id": 7,
+    "question": "What is Direct Preference Optimization (DPO)?",
+    "answer": "A method for aligning models using preference data without requiring a reward model.",
+    "answer_type": "conceptual",
+    "source_evidence": [
+      [
+        "dpo.rst",
+        15,
+        30
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 8,
+    "question": "What are IC operations and how can they be used?",
+    "answer": "IC operations are mechanisms for dynamically controlling experiment runs, including Stop, Resume, Clone-Modify, and Delete, which allow pausing, restarting, modifying, or removing runs during execution.",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "icops.rst",
+        1,
+        30
+      ],
+      [
+        "icops.rst",
+        70,
+        180
+      ]
+    ],
+    "confidence": "Medium"
+  },
+  {
+    "question_id": 9,
+    "question": "What role does the vector store play during the Document Preprocessing and Query Processing stages of the RAG pipeline?",
+    "answer": "During Document Preprocessing, the vector store stores embedded document chunks, and during Query Processing, it is used to retrieve relevant chunks for each query.",
+    "answer_type": "conceptual",
+    "source_evidence": [
+      [
+        "ragspecs.rst",
+        20,
+        100
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 13,
+    "question": "What does accumulate_metrics_fn do?",
+    "answer": "It aggregates evaluation metrics across batches.",
+    "answer_type": "procedural",
+    "source_evidence": [
+      [
+        "evalsfunctions.rst",
+        294,
+        322
+      ],
+      [
+        "evalsfunctions.rst",
+        328,
+        355
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 14,
+    "question": "What is online aggregation?",
+    "answer": "Online aggregation computes metrics incrementally and can estimate confidence intervals.",
+    "answer_type": "conceptual",
+    "source_evidence": [
+      [
+        "onlineagg.rst",
+        1,
+        30
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 15,
+    "question": "How does RapidFire AI's adaptive execution engine improve experimentation compared to sequential execution, and how do IC operations support this?",
+    "answer": "It enables parallel execution while IC operations provide dynamic control over running experiments.",
+    "answer_type": "multi_file_synthesis",
+    "source_evidence": [
+      [
+        "difference.rst",
+        1,
+        25
+      ],
+      [
+        "icops.rst",
+        70,
+        120
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 16,
+    "question": "How do List() and Range() interact differently with RFGridSearch and RFRandomSearch?",
+    "answer": "RFGridSearch typically operates over discrete values such as those defined by List(), while RFRandomSearch can sample from both discrete and continuous ranges.",
+    "answer_type": "comparative",
+    "source_evidence": [
+      [
+        "configs.rst",
+        20,
+        45
+      ],
+      [
+        "configs.rst",
+        55,
+        100
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 18,
+    "question": "How do Document Preprocessing and Query Processing work together in the RAG pipeline?",
+    "answer": "Document preprocessing builds embeddings, while query processing retrieves relevant documents and incorporates them into generation.",
+    "answer_type": "conceptual",
+    "source_evidence": [
+      [
+        "ragspecs.rst",
+        20,
+        35
+      ],
+      [
+        "ragcontexteng.rst",
+        1,
+        25
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 19,
+    "question": "Why can RFGridSearch become inefficient for large configuration spaces, and how does RFRandomSearch help?",
+    "answer": "Grid search scales poorly with large configuration spaces, while random search improves efficiency by sampling configurations instead of exhaustively enumerating them.",
+    "answer_type": "comparative",
+    "source_evidence": [
+      [
+        "configs.rst",
+        55,
+        100
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 25,
+    "question": "What features does RapidFire AI provide for controlling and monitoring experiments?",
+    "answer": "RapidFire AI provides Interactive Control (IC) operations such as Stop, Resume, Clone-Modify, and Delete for controlling runs, along with dashboards like MLflow, TensorBoard, and Trackio for monitoring experiment metrics.",
+    "answer_type": "feature_enumeration",
+    "source_evidence": [
+      [
+        "icops.rst",
+        70,
+        120
+      ],
+      [
+        "dashboard.rst",
+        1,
+        31
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 27,
+    "question": "Why is online aggregation more effective than downsampling?",
+    "answer": "Online aggregation provides real-time metric estimates with confidence intervals, whereas downsampling reduces data and may lose information.",
+    "answer_type": "comparative",
+    "source_evidence": [
+      [
+        "onlineagg.rst",
+        1,
+        40
+      ],
+      [
+        "onlineagg.rst",
+        227,
+        245
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 28,
+    "question": "What search configuration types can be specified in the search_cfg of RFLangChainRagSpec for RAG retrieval?",
+    "answer": "RapidFire AI supports similarity search, similarity score threshold search, and maximum marginal relevance (MMR) retrieval.",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "ragspecs.rst",
+        99,
+        125
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 30,
+    "question": "How does reranking improve retrieval quality?",
+    "answer": "Reranking refines initially retrieved results using stronger scoring models to improve precision.",
+    "answer_type": "conceptual_explanation",
+    "source_evidence": [
+      [
+        "ragspecs.rst",
+        30,
+        50
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 46,
+    "question": "When are Interactive Control operations executed during a running experiment?",
+    "answer": "Interactive Control operations are queued by the system and executed at a chunk boundary for the run.",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "icops.rst",
+        78,
+        84
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 47,
+    "question": "Why are IC operations at executed at chunk boundaries?",
+    "answer": "RapidFire AI executes IC operations at chunk boundaries to avoid potentially non-deterministic or inconsistent behavior during concurrent run execution.",
+    "answer_type": "conceptual",
+    "source_evidence": [
+      [
+        "icops.rst",
+        78,
+        84
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 48,
+    "question": "How can users control the number of chunks used during run_fit()?",
+    "answer": "Users can control the number of chunks by setting the num_chunks argument during run_fit().",
+    "answer_type": "procedural",
+    "source_evidence": [
+      [
+        "icops.rst",
+        78,
+        84
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 49,
+    "question": "What does RapidFire AI automatically adjust to maintain GPU utilization during ongoing runs?",
+    "answer": "RapidFire AI automatically adjusts the apportioning of GPUs among ongoing runs to ensure maximal GPU utilization.",
+    "answer_type": "conceptual",
+    "source_evidence": [
+      [
+        "icops.rst",
+        88,
+        94
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 50,
+    "question": "What are RapidFire AI logs used for?",
+    "answer": "RapidFire AI logs contain entries about operations run by RapidFire AI, including IC Ops, to help monitor and debug experiment behavior.",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "glossary.rst",
+        92,
+        103
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 51,
+    "question": "Where are IC operation logs displayed in the RapidFire AI app?",
+    "answer": "IC Ops are displayed under their own tab next to the Experiment Log tab.",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "glossary.rst",
+        92,
+        103
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 52,
+    "question": "What does get_results() return in RapidFire AI?",
+    "answer": "get_results() returns a single DataFrame containing all loss and evaluation metric values of all runs across all epochs and run_fit() invocations in the experiment so far.",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "glossary.rst",
+        116,
+        124
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 53,
+    "question": "What happens if a retriever is directly provided in RFLangChainRagSpec?",
+    "answer": "If a retriever is provided, it is used as is, so document_loader, text_splitter, and vector_store_cfg are not needed.",
+    "answer_type": "procedural",
+    "source_evidence": [
+      [
+        "ragspecs.rst",
+        364,
+        381
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 54,
+    "question": "How does RapidFire AI behave when no retriever is provided but vector_store_cfg is provided?",
+    "answer": "If no retriever is provided but vector_store_cfg is provided, RapidFire AI creates a retriever from that vector store using LangChain's as_retriever() method.",
+    "answer_type": "procedural",
+    "source_evidence": [
+      [
+        "ragspecs.rst",
+        364,
+        381
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 55,
+    "question": "What must match when using an existing vector store for RAG retrieval?",
+    "answer": "The embedding_cfg used to embed evaluation queries must match the embedding model used to build the vector store.",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "ragspecs.rst",
+        364,
+        381
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 56,
+    "question": "What default vector store does RapidFire AI build if neither a retriever nor vector store is provided but preprocessing is needed?",
+    "answer": "RapidFire AI builds a default FAISS vector store and retriever from the provided documents.",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "ragspecs.rst",
+        370,
+        387
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 59,
+    "question": "When can users skip RFLangChainRagSpec entirely?",
+    "answer": "Users can skip RFLangChainRagSpec entirely when no RAG is needed and they are only exploring plain prompt or context engineering.",
+    "answer_type": "conceptual",
+    "source_evidence": [
+      [
+        "ragspecs.rst",
+        1,
+        15
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 60,
+    "question": "What are the return types of knob set generators used for in RapidFire AI?",
+    "answer": "The return types of knob set generators are internal to RapidFire AI and are usable only within the context of config group generators.",
+    "answer_type": "conceptual",
+    "source_evidence": [
+      [
+        "configs.rst",
+        40,
+        50
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 61,
+    "question": "What diagnostic command does RapidFire AI provide to check Python environment, packages, and system setup?",
+    "answer": "The command 'rapidfireai doctor' provides a diagnostic report covering the Python environment, installed packages, GPU/CUDA status, and system configuration.",
+    "answer_type": "procedural",
+    "source_evidence": [
+      [
+        "troubleshooting.rst",
+        8,
+        18
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 62,
+    "question": "What Python version is required to run RapidFire AI?",
+    "answer": "RapidFire AI requires Python 3.12 or higher.",
+    "answer_type": "factual",
+    "source_evidence": [
+      [
+        "troubleshooting.rst",
+        8,
+        18
+      ],
+      [
+        "walkthroughft.rst",
+        29,
+        42
+      ],
+      [
+        "walkthroughrag.rst",
+        32,
+        47
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 63,
+    "question": "How can you resolve the GenerationMixin import error between experiments?",
+    "answer": "You should kill stray Python processes, wait briefly, and restart the kernel before rerunning the experiment.",
+    "answer_type": "procedural",
+    "source_evidence": [
+      [
+        "issues.rst",
+        22,
+        39
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 64,
+    "question": "What is recommended if you run out of storage space while running experiments?",
+    "answer": "You should clear the Hugging Face cache and remove or move experiment artifacts to free up space.",
+    "answer_type": "procedural",
+    "source_evidence": [
+      [
+        "issues.rst",
+        42,
+        53
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 65,
+    "question": "How do you initialize RapidFire AI for RAG evaluation?",
+    "answer": "You install RapidFire AI, run 'rapidfireai init --evals', and optionally start the server with 'rapidfireai start'.",
+    "answer_type": "procedural",
+    "source_evidence": [
+      [
+        "walkthroughrag.rst",
+        29,
+        103
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 66,
+    "question": "When can RAG evaluation be performed without GPUs?",
+    "answer": "RAG evaluation can be performed without GPUs when using closed model APIs for embedding and generation.",
+    "answer_type": "conceptual",
+    "source_evidence": [
+      [
+        "walkthroughrag.rst",
+        29,
+        103
+      ],
+      [
+        "difference.rst",
+        68,
+        75
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 67,
+    "question": "What are the command-line steps to install and initialize RapidFire AI for fine-tuning workflows?",
+    "answer": "Create a Python 3.12 environment, install RapidFire AI using 'pip install rapidfireai', run 'rapidfireai init' to initialize dependencies, and start the server with 'rapidfireai start'.",
+    "answer_type": "procedural",
+    "source_evidence": [
+      [
+        "walkthroughft.rst",
+        37,
+        101
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 68,
+    "question": "How do you gain access to gated Hugging Face models for use with RapidFire AI?",
+    "answer": "You authenticate with a Hugging Face token and request access to the gated models on their Hugging Face pages.",
+    "answer_type": "procedural",
+    "source_evidence": [
+      [
+        "walkthroughft.rst",
+        27,
+        78
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 69,
+    "question": "What initialization command is used for RAG evaluation versus fine-tuning in RapidFire AI?",
+    "answer": "RAG evaluation is initialized using 'rapidfireai init --evals', while fine-tuning is initialized using 'rapidfireai init'.",
+    "answer_type": "comparative",
+    "source_evidence": [
+      [
+        "walkthroughrag.rst",
+        62,
+        76
+      ],
+      [
+        "walkthroughft.rst",
+        80,
+        102
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 71,
+    "question": "How does resolving environment issues differ from resolving runtime errors in RapidFire AI?",
+    "answer": "Environment issues are diagnosed using tools like 'rapidfireai doctor', while runtime errors are resolved by actions such as restarting processes or clearing caches.",
+    "answer_type": "comparative",
+    "source_evidence": [
+      [
+        "troubleshooting.rst",
+        8,
+        18
+      ],
+      [
+        "issues.rst",
+        22,
+        53
+      ]
+    ],
+    "confidence": "high"
+  },
+  {
+    "question_id": 72,
+    "question": "How does GPU usage differ between RAG evaluation workflows and fine-tuning workflows in RapidFire AI?",
+    "answer": "RAG evaluation can run without GPUs when using API-based models, while fine-tuning workflows typically require GPUs for training models.",
+    "answer_type": "comparative",
+    "source_evidence": [
+      [
+        "overview.rst",
+        12,
+        21
+      ],
+      [
+        "sft.rst",
+        41,
+        57
+      ],
+      [
+        "walkthroughrag.rst",
+        23,
+        31
+      ]
+    ],
+    "confidence": "high"
+  }
+]

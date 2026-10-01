@@ -1,0 +1,185 @@
+Best one so far:
+------
+Hybrid retrieval
+chunk_size = 512
+chunk_overlap = 200
+top_k = 3
+hybrid_alpha = 0.25
+use_reranker = False
+
+precision = 0.34375
+recall    = 0.78125
+f1        = 0.4625
+mrr       = 0.640625
+-------
+Hybrid retrieval
+chunk_size = 512
+chunk_overlap = 200
+top_k = 2
+hybrid_alpha = 0.10 or 0.15
+
+precision = 0.453125
+recall    = 0.6875
+f1        = 0.53125
+mrr       = 0.640625
+-------
+Hybrid retrieval
+chunk_size = 512
+chunk_overlap = 200
+top_k = 2
+hybrid_alpha = 0.15
+with faiss normalization of embeddings
+
+precision = 0.46875
+recall    = 0.71875
+f1        = 0.55208
+mrr       = 0.65625
+
+Embedding model:
+embedding_model = MiniLM OR MPNet
+top_k = 2
+reranker = False
+F1 = 0.55208  
+MRR = 0.65625
+precision = 0.468750
+recall = 0.71875
+--------
+BEST NOW CURRENT:
+{
+  "chunk_size": 512,
+  "chunk_overlap": 200,
+  "top_k": 2,
+  "retriever_type": "hybrid",
+  "hybrid_alpha": 0.15,
+  "hybrid_candidate_k": 50,
+  "use_reranker": False,
+  "retrieval_pool_k": 30
+}
+retrieval_f1 = 0.7396
+precision = 0.7014
+recall = 0.8403
+hit = 0.9097
+MRR = 0.8576
+-------
+Config:
+{
+  'chunk_size': 512,
+  'chunk_overlap': 200,
+  'top_k': 1,
+  'retriever_type': 'hybrid',
+  'hybrid_alpha': 0.15,
+  'hybrid_candidate_k': 50,
+  'use_reranker': False,
+  'retrieval_pool_k': 30
+}
+
+Results:
+Samples Processed: 42
+Processing Time: 1315.40 seconds
+Samples Per Second: 0.03
+
+retrieval_precision: 0.8263888889
+retrieval_recall:    0.7083333333
+retrieval_f1:        0.7442129630
+retrieval_hit:       0.8263888889
+mrr:                 0.8263888889
+num_examples:        42
+
+
+
+
+python main.py \
+  --input data/validation-set-input.json \
+  --output data/validation-set-results-new.json \
+  --corpus data/sourcedocs \
+  --embedding-model sentence-transformers/all-mpnet-base-v2 \
+  --chunk-size 512 \
+  --chunk-overlap 200 \
+  --top-k 5 \
+  --retriever-type hybrid \
+  --hybrid-alpha 0.15 \
+  --hybrid-candidate-k 50 \
+  --retrieval-pool-k 30 \
+  --llm-model api-gpt-oss-120b \
+  --llm-api-base $LLM_API_BASE
+
+  python eval_retrieval.py \
+  --output data/validation-set-results-new.json \
+  --validation data/validation-set-golden-qa-pairs-for-retrieval.json \
+  --k 5 \
+  > data/validation-set-retrieval-eval-new.json
+
+  python eval_generation.py \
+  --golden data/validation-set-golden-qa-full.json \
+  --generated data/validation-set-results-new.json \
+  --output data/validation-set-generation-eval-new.json \
+  --judge-model api-gpt-oss-120b \
+  --judge-base-url $LLM_API_BASE
+
+  F1@5=0.5783
+P@5=0.4407
+R@5=0.9278
+Retrieval Score=0.6489
+Generation Overall=0.7397
+on the validation set
+
+$ python main.py \
+ --input data/validation-set-input.json \
+  --output data/validation-set-results-best.json \
+   --corpus data/sourcedocs \
+    --embedding-model sentence-transformers/all-MiniLM-L6-v2 \
+     --chunk-size 512 \
+      --chunk-overlap 200 \
+       --top-k 2 \
+        --retriever-type hybrid \
+         --hybrid-alpha 0.15 \
+          --hybrid-candidate-k 50 \
+           --retrieval-pool-k 30 \
+            --normalize-embeddings-for-faiss \
+             --llm-model api-gpt-oss-120b \
+              --llm-api-base $LLM_API_BASE 
+              
+$ python eval_retrieval.py \ 
+--output data/validation-set-results-best.json \ 
+--validation data/validation-set-golden-qa-pairs-for-retrieval.json \ 
+--k 5 \ > data/validation-set-retrieval-eval-best.json 
+
+[retrieval] F1@5=0.7037 P@5=0.6333 R@5=0.8611 Retrieval Score=0.7327 [0 missing, 0 malformed] 
+
+$ python eval_generation.py \ 
+--golden data/validation-set-golden-qa-full.json \ 
+--generated data/validation-set-results-best.json \ 
+--output data/validation-set-generation-eval-best.json \ 
+--judge-model api-gpt-oss-120b \ 
+--judge-base-url $LLM_API_BASE 
+
+"questions_evaluated": 45, 
+"avg_correctness": 0.8888888888888888, 
+"avg_completeness": 3.6666666666666665, 
+"avg_faithfulness": 0.9333333333333333, 
+"avg_overall": 0.7841269841269844, 
+"judge_failures": 0,
+
+
+ON GOLDEN QA V2 CLEAN
+python main.py   --input data/golden_qa_input_v2_clean.json   --output data/generated_results_golden_qa_v2_clean_best.json   --corpus data/sourcedocs   --embedding-model sentence-transformers/all-MiniLM-L6-v2   --chunk-size 512   --chunk-overlap 200   --top-k 2   --retriever-type hybrid   --hybrid-alpha 0.15   --hybrid-candidate-k 50   --retrieval-pool-k 30   --normalize-embeddings-for-faiss   --llm-model api-gpt-oss-120b   --llm-api-base $LLM_API_BASE
+
+python eval_retrieval.py   --output data/generated_results_golden_qa_v2_clean_best.json   --validation data/golden_qa_validation_v2_clean.json   --k 2   | tee data/retrieval_eval_v2_clean_best_k2.txt
+
+python eval_generation.py   --golden data/golden_qa_full_v2_clean.json   --generated data/generated_results_golden_qa_v2_clean_best.json   --output data/generation_eval_v2_clean_best_claude.json   --judge-model claude-sonnet-4-6   --judge-base-url $LLM_API_BASE
+
+"summary": {
+    "F1@2": 0.7071428571428571,
+    "Precision@2": 0.6666666666666666,
+    "Recall@2": 0.8095238095238095,
+    "Retrieval Score": 0.7277777777777779
+
+================================================================================
+GENERATION EVALUATION RESULTS
+================================================================================
+Questions evaluated: 42
+Average Correctness:  0.905 / 1
+Average Completeness: 4.333 / 5
+Average Faithfulness: 1.000 / 1
+Average Overall:      0.891 / 1
+

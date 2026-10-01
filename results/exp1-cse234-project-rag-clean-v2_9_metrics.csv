@@ -1,0 +1,8 @@
+run_id,model_name,model_config,Samples Processed,Processing Time,Samples Per Second,retrieval_precision,retrieval_recall,retrieval_f1,retrieval_hit,mrr,num_examples
+1,api-gpt-oss-120b,"{'chunk_size': 80, 'chunk_overlap': 10, 'top_k': 5, 'use_reranker': False}",24.0,787.56 seconds,0.03,0.09375,0.40625,0.15029761904761907,0.40625,0.2890625,24.0
+2,api-gpt-oss-120b,"{'chunk_size': 600, 'chunk_overlap': 100, 'top_k': 5, 'use_reranker': False}",24.0,737.84 seconds,0.03,0.15000000000000002,0.6875,0.24404761904761907,0.6875,0.44635416666666666,24.0
+3,api-gpt-oss-120b,"{'chunk_size': 150, 'chunk_overlap': 30, 'top_k': 12, 'use_reranker': False}",24.0,717.41 seconds,0.03,0.07291666666666667,0.5625,0.12774725274725274,0.5625,0.2943948412698413,24.0
+4,api-gpt-oss-120b,"{'chunk_size': 150, 'chunk_overlap': 30, 'top_k': 2, 'use_reranker': False}",24.0,687.18 seconds,0.03,0.140625,0.25,0.17708333333333331,0.25,0.234375,24.0
+5,api-gpt-oss-120b,"{'chunk_size': 256, 'chunk_overlap': 0, 'top_k': 5, 'use_reranker': False}",24.0,664.12 seconds,0.04,0.125,0.5625,0.2023809523809524,0.5625,0.30833333333333335,24.0
+6,api-gpt-oss-120b,"{'chunk_size': 256, 'chunk_overlap': 120, 'top_k': 5, 'use_reranker': False}",24.0,643.44 seconds,0.04,0.21875,0.65625,0.31733630952380953,0.65625,0.46770833333333334,24.0
+7,api-gpt-oss-120b,"{'chunk_size': 256, 'chunk_overlap': 40, 'top_k': 5, 'use_reranker': True}",24.0,616.38 seconds,0.04,0.15000000000000002,0.625,0.2380952380952381,0.625,0.44114583333333335,24.0

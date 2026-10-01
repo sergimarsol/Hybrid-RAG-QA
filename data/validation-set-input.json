@@ -1,0 +1,182 @@
+[
+  {
+    "question_id": 1,
+    "question": "What are the two knob set generators currently supported by RapidFire AI for creating multi-config specifications?"
+  },
+  {
+    "question_id": 2,
+    "question": "How does RapidFire AI's adaptive execution engine differ from traditional sequential execution for multi-config experiments?"
+  },
+  {
+    "question_id": 3,
+    "question": "What parameters does the Experiment constructor accept?"
+  },
+  {
+    "question_id": 4,
+    "question": "What is the difference between RFGridSearch and RFRandomSearch in terms of how they handle knob values?"
+  },
+  {
+    "question_id": 5,
+    "question": "How do I set up RapidFire AI for RAG evaluation on a machine without GPUs?"
+  },
+  {
+    "question_id": 6,
+    "question": "What are the four Interactive Control (IC) Operations supported by RapidFire AI?"
+  },
+  {
+    "question_id": 7,
+    "question": "What does the preprocess_fn function do in the run_evals pipeline, and what arguments does the system inject into it?"
+  },
+  {
+    "question_id": 8,
+    "question": "What three vector store backends does RapidFire AI support and what modes of operation do they offer?"
+  },
+  {
+    "question_id": 9,
+    "question": "What columns does the DataFrame returned by get_runs_info() contain?"
+  },
+  {
+    "question_id": 10,
+    "question": "What are the three search algorithm types supported in the search_cfg of RFLangChainRagSpec?"
+  },
+  {
+    "question_id": 11,
+    "question": "What is online aggregation in the context of RapidFire AI evals, and what three confidence interval strategies does it support?"
+  },
+  {
+    "question_id": 12,
+    "question": "How do you warm-start a cloned run using Clone-Modify, and what constraints apply?"
+  },
+  {
+    "question_id": 13,
+    "question": "What is the purpose of the accumulate_metrics_fn in the evals pipeline, and what happens if it is not provided?"
+  },
+  {
+    "question_id": 14,
+    "question": "What dashboards does RapidFire AI support for logging metrics, and how do you specify which ones to use?"
+  },
+  {
+    "question_id": 15,
+    "question": "What are the key LoRA knobs typically experimented with in RFLoraConfig, and what are their common starting values?"
+  },
+  {
+    "question_id": 16,
+    "question": "How does RapidFire AI handle the interaction between search k and reranker top_n when constructing config groups?"
+  },
+  {
+    "question_id": 17,
+    "question": "What Python version does RapidFire AI require, and what command can you run to diagnose installation issues?"
+  },
+  {
+    "question_id": 18,
+    "question": "How does RapidFire AI's document_template work in RFLangChainRagSpec, and what is the default template behavior?"
+  },
+  {
+    "question_id": 19,
+    "question": "What does the run_evals() function return, and how does its return value differ from run_fit()?"
+  },
+  {
+    "question_id": 20,
+    "question": "What two types of generator configs does RapidFire AI support, and what underlying systems do they wrap?"
+  },
+  {
+    "question_id": 21,
+    "question": "What sampling parameters can you configure in RFvLLMModelConfig for text generation?"
+  },
+  {
+    "question_id": 22,
+    "question": "What rate limiting parameters does RFOpenAIAPIModelConfig provide, and why are they needed?"
+  },
+  {
+    "question_id": 23,
+    "question": "How does RFPromptManager select few-shot examples for each input query?"
+  },
+  {
+    "question_id": 24,
+    "question": "What eval config knobs can be included in the config dictionary apart from the generator?"
+  },
+  {
+    "question_id": 25,
+    "question": "What must the create_model_fn return, and when is it invoked by RapidFire AI?"
+  },
+  {
+    "question_id": 26,
+    "question": "How do reward functions work in RapidFire AI for GRPO training, and what arguments does TRL inject into them?"
+  },
+  {
+    "question_id": 27,
+    "question": "What training-specific arguments can you configure in RFSFTConfig, and how does it relate to HuggingFace TRL?"
+  },
+  {
+    "question_id": 28,
+    "question": "How does RFDPOConfig differ from RFGRPOConfig in the trainer configuration?"
+  },
+  {
+    "question_id": 29,
+    "question": "What is a 'leaf config' in RapidFire AI terminology, and how does it relate to runs?"
+  },
+  {
+    "question_id": 30,
+    "question": "What are the four tabs on the main Experiments page of RapidFire AI's MLflow-fork dashboard?"
+  },
+  {
+    "question_id": 31,
+    "question": "What is the recommended approach if you run out of storage space while experimenting with many LLMs?"
+  },
+  {
+    "question_id": 32,
+    "question": "What dataset does the SFT tutorial use, how many training examples are included, and what base models are compared?"
+  },
+  {
+    "question_id": 33,
+    "question": "What are the four DPO training configurations explored in the DPO tutorial, and what loss functions do they use?"
+  },
+  {
+    "question_id": 34,
+    "question": "What are the five reward functions used in the GRPO tutorial for mathematical reasoning, and what does each one reward?"
+  },
+  {
+    "question_id": 35,
+    "question": "What RAG components and configuration knobs does the SciFact tutorial use for scientific claim verification?"
+  },
+  {
+    "question_id": 36,
+    "question": "How does the GSM8K tutorial configure its few-shot prompting pipeline, and how many total config combinations does it produce?"
+  },
+  {
+    "question_id": 37,
+    "question": "What is RapidFire AI, and what three-way communication does it establish?"
+  },
+  {
+    "question_id": 38,
+    "question": "What are the three use case tutorials provided for RAG and context engineering, and what type of workflow does each demonstrate?"
+  },
+  {
+    "question_id": 39,
+    "question": "How do you install and initialize RapidFire AI for fine-tuning workflows, and what steps are required to access gated Hugging Face models?"
+  },
+  {
+    "question_id": 40,
+    "question": "What does the postprocess_fn do in the run_evals pipeline, and when is it invoked?"
+  },
+  {
+    "question_id": 41,
+    "question": "Why does RapidFire AI argue that simply downsampling the evaluation data is insufficient compared to its online aggregation approach?"
+  },
+  {
+    "question_id": 42,
+    "question": "What GPU requirements does the SFT FSDP tutorial have for different model sizes?"
+  },
+  {
+    "question_id": 43,
+    "question": "How do you resolve an ImportError for GenerationMixin that occurs between experiments?"
+  },
+  {
+    "question_id": 44,
+    "question": "What arguments does the RFModelConfig class accept for defining a model configuration in RapidFire AI?"
+  },
+  {
+    "question_id": 45,
+    "question": "What is the difference between distributive and algebraic metrics in RapidFire AI's online aggregation for evals?"
+  }
+]

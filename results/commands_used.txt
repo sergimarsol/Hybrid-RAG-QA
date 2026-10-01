@@ -1,0 +1,52 @@
+## Run inference on a dataset
+
+conda run -p .venv python3 main.py \
+  --input data/validation-set-input.json \
+  --output data/validation-set-results.json \
+  --corpus data/sourcedocs \
+  --llm-model claude-sonnet-4-6-aws \
+  --llm-api-base $LLM_API_BASE
+
+  ## Evaluation
+
+  ### Retrieval Evaluation
+
+  conda run -p .venv python3 eval_retrieval.py \
+  --output data/validation-set-results.json \
+  --validation data/golden_qa_validation.json \
+  --k 5
+
+  python eval_retrieval.py \
+  --output data/validation-set-results.json \
+  --validation data/golden_qa_validation.json \
+  --k 5
+
+  python eval_retrieval.py \
+  --output data/generated_results.json \
+  --validation data/golden_qa_validation.json \
+  --k 5
+
+  ### Generation Evaluation
+
+  python eval_generation.py \
+  --golden data/golden_qa_full.json \
+  --generated data/generated_results.json \
+  --output data/generation_eval_results.json \
+  --judge-model claude-sonnet-4-6 \
+  --judge-base-url $LLM_API_BASE
+
+
+
+
+
+
+
+
+  python main.py   --input data/golden_qa_input_v2_clean.json   --output data/generated_results_golden_qa_v2_clean_best.json   --corpus data/sourcedocs   --embedding-model sentence-transformers/all-MiniLM-L6-v2   --chunk-size 512   --chunk-overlap 200   --top-k 2   --retriever-type hybrid   --hybrid-alpha 0.15   --hybrid-candidate-k 50   --retrieval-pool-k 30   --normalize-embeddings-for-faiss   --llm-model api-gpt-oss-120b   --llm-api-base $LLM_API_BASE
+
+  python eval_retrieval.py   --output data/generated_results_golden_qa_v2_clean_best.json   --validation data/golden_qa_validation_v2_clean.json   --k 2   | tee data/retrieval_eval_v2_clean_best_k2.txt
+
+  python eval_generation.py   --golden data/golden_qa_full_v2_clean.json   --generated data/generated_results_golden_qa_v2_clean_best.json   --output data/generation_eval_v2_clean_best_claude.json   --judge-model claude-sonnet-4-6   --judge-base-url $LLM_API_BASE
+
+  
+
