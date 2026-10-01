@@ -32,7 +32,7 @@ This project answers questions over the RapidFire AI open-source docs (31 reStru
 - **Token-budgeted context assembly** (`src/generator.py`). The prompt is built with metadata labels and capped at `--max-context-tokens`, counting every wrapper string.
 - **Provider-agnostic generation**. Any OpenAI-compatible endpoint works (`LLM_API_BASE` / `--llm-api-base`). There is also a `mock` mode for offline runs.
 - **Retrieval tracing**. Each query writes its expanded queries, scores, child spans and parent context to `logs/retrieved_chunks.jsonl`.
-- **RapidFire AI integration** (`src/rapidfire_adapter.py`). `RAGInferenceEngine` subclasses RapidFire's `InferenceEngine` so that RapidFire's multi-config evals can run *this* pipeline, keeping the retrieved spans for metric computation. `rapidfire_datahub_compat.py` patches the RapidFire dispatcher so it runs behind a JupyterHub proxy.
+- **RapidFire AI integration** (`src/rapidfire_adapter.py`). `RAGInferenceEngine` subclasses RapidFire's `InferenceEngine` so that RapidFire's multi-config evals can run *this* pipeline, keeping the retrieved spans for metric computation. `rapidfire_datahub_compat.py` patches the RapidFire dispatcher so it runs behind a JupyterHub proxy. The full experiment is in [`examples/rapidfire_grid_search.ipynb`](examples/rapidfire_grid_search.ipynb): it defines the config knobs, custom span-level retrieval metrics (precision / recall / F1 / MRR), runs the multi-config evals and exports the result tables.
 - **Evaluation tooling**. `evaluate_retrieval.py` computes span-based P/R/F1@k. `run_judge.py` scores answers with an LLM judge using the course-provided rubric (`src/project1_eval.py`, `data/judge_prompt.txt`).
 
 ## How it works
@@ -148,6 +148,7 @@ Python 3.10+ · FAISS · sentence-transformers (MiniLM / MPNet embeddings, MS MA
 │   ├── judge_prompt.txt                    # LLM-judge rubric
 │   └── output.json, results_C4_v2.json     # sample pipeline outputs
 ├── results/                    # Experiment notes, RapidFire grid CSVs, judge scores
+├── examples/rapidfire_grid_search.ipynb  # RapidFire AI multi-config grid search over this pipeline (custom metrics)
 ├── examples/demo-rag-baseline.ipynb  # RapidFire AI RAG tutorial notebook (SciFact), kept for reference
 └── reference/                  # Reference copy of the DataHub compatibility helper
 ```
@@ -239,6 +240,17 @@ python run_judge.py \
 ```
 
 `grid_search.sh` runs a small 16-run sweep (chunk size × top-k × retriever × reranker) end to end on the first 10 golden questions. It honours `LLM_API_BASE` and `APIKEY_TXT`.
+
+### Reproduce the RapidFire AI grid search
+
+```bash
+pip install rapidfireai            # optional dependency, see requirements.txt
+export LLM_API_BASE=...            # any OpenAI-compatible endpoint
+export LLM_API_KEY=...
+jupyter notebook examples/rapidfire_grid_search.ipynb
+```
+
+Edit `experiment_settings` in the "Define Multi-Config Knobs" cell to change the grid (the committed version sweeps `top_k` from 1 to 5 on the hybrid retriever).
 
 ## Team & acknowledgements
 
