@@ -5,9 +5,11 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
 
-INPUT_FILE="data/24q_input.json"
+# The golden QA file doubles as pipeline input (main.py only reads question_id/question).
+INPUT_FILE="data/golden_qa_full_v2_clean.json"
 CORPUS_DIR="data/sourcedocs"
-GOLDEN_FILE="data/golden_qa_full.json"
+GOLDEN_FILE="data/golden_qa_full_v2_clean.json"
+APIKEY_TXT="${APIKEY_TXT:-$HOME/api-key.txt}"
 JUDGE_MODEL="claude-sonnet-4-6"
 LLM_MODEL="api-gpt-oss-120b"
 LLM_API_BASE="${LLM_API_BASE:-https://api.openai.com/v1}"
@@ -18,6 +20,11 @@ OUTPUT_ROOT="logs/grid_search"
 
 if [[ ! -f "$INPUT_FILE" ]]; then
   echo "Missing input file: $INPUT_FILE" >&2
+  exit 1
+fi
+
+if [[ ! -f "$APIKEY_TXT" ]]; then
+  echo "Missing API key file: $APIKEY_TXT (set APIKEY_TXT to override)" >&2
   exit 1
 fi
 
@@ -35,8 +42,8 @@ python3 - <<'PY'
 import json
 from pathlib import Path
 
-input_path = Path("data/24q_input.json")
-golden_path = Path("data/golden_qa_full.json")
+input_path = Path("data/golden_qa_full_v2_clean.json")
+golden_path = Path("data/golden_qa_full_v2_clean.json")
 output_input = Path("logs/grid_search/first_10_input.json")
 output_golden = Path("logs/grid_search/first_10_golden.json")
 
@@ -79,8 +86,9 @@ for chunk_size in "${chunk_sizes[@]}"; do
         python3 main.py
         --input "$INPUT_SUBSET_FILE"
         --output "$raw_results"
-        --corpus "$CORPUS_DIR"
-        --llm-model "$LLM_MODEL"
+        --corpus-dir "$CORPUS_DIR"
+        --apikey-txt "$APIKEY_TXT"
+        --generation-model "$LLM_MODEL"
         --llm-api-base "$LLM_API_BASE"
         --chunk-size "$chunk_size"
         --top-k "$top_k"
@@ -100,14 +108,14 @@ for chunk_size in "${chunk_sizes[@]}"; do
         "${main_cmd[@]}"
       } &> "$main_log"
 
-      python3 eval_retrieval.py \
+      python3 evaluate_retrieval.py \
         --output "$raw_results" \
         --validation "$GOLDEN_SUBSET_FILE" \
         --k "$RETRIEVAL_K" \
         > "$retrieval_eval" \
         2> "$retrieval_log"
 
-      python3 eval_generation.py \
+      python3 run_judge.py \
         --golden "$GOLDEN_SUBSET_FILE" \
         --generated "$raw_results" \
         --output "$generation_eval" \

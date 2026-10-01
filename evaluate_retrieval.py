@@ -5,7 +5,7 @@ Scores a student output JSON against a validation set using span-based retrieval
 metrics. A retrieved chunk hits a ground-truth span if they share a filename and
 their inclusive line intervals overlap.
 
-    python3 eval_retrieval.py --output OUTPUT.json --validation VAL.json [--k 5]
+    python3 evaluate_retrieval.py --output OUTPUT.json --validation VAL.json [--k 5]
 
 Emits a JSON report to stdout (redirect with `> report.json`). A one-line
 summary is printed to stderr for quick eyeballing.

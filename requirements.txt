@@ -1,5 +1,5 @@
 # RAG Pipeline Requirements
-# Python 3.9+
+# Python 3.10+ (the code uses PEP 604 "X | None" type hints)
 
 # Core dependencies
 langchain>=0.3.28
@@ -21,6 +21,14 @@ pandas>=2.0.0
 # Utilities
 tqdm>=4.65.0
 pyyaml>=6.0
+
+# RapidFire AI experimentation (optional: src/rapidfire_adapter.py,
+# rapidfire_datahub_compat.py, examples/ notebook)
+rapidfireai
+datasets
+langchain-huggingface
+langchain-openai
+langchain-classic
 
 # Development (optional)
 pytest>=7.0.0
