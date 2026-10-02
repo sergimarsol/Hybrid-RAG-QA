@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CSE/DSC 234 Project 1 retrieval metric CLI.
+"""Span-level retrieval metric CLI (precision / recall / F1 @ k).
 
 Scores a student output JSON against a validation set using span-based retrieval
 metrics. A retrieved chunk hits a ground-truth span if they share a filename and
@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from src.project1_eval import f1_at_k, precision_at_k, recall_at_k, to_spans
+from src.eval_utils import f1_at_k, precision_at_k, recall_at_k, to_spans
 
 
 def main() -> int:

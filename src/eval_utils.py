@@ -1,4 +1,4 @@
-"""Shared evaluation primitives for CSE/DSC 234 Project 1.
+"""Shared evaluation primitives (retrieval span metrics and LLM-judge calls; course-provided).
 
 Imported by evaluate_retrieval.py, run_judge.py, and rapidfire_integration_example.py.
 Do not modify: the TAs will re-run the CLIs with the original module.

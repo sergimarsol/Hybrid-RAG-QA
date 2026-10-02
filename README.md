@@ -33,7 +33,7 @@ This project answers questions over the RapidFire AI open-source docs (31 reStru
 - **Provider-agnostic generation**. Any OpenAI-compatible endpoint works (`LLM_API_BASE` / `--llm-api-base`). There is also a `mock` mode for offline runs.
 - **Retrieval tracing**. Each query writes its expanded queries, scores, child spans and parent context to `logs/retrieved_chunks.jsonl`.
 - **RapidFire AI integration** (`src/rapidfire_adapter.py`). `RAGInferenceEngine` subclasses RapidFire's `InferenceEngine` so that RapidFire's multi-config evals can run *this* pipeline, keeping the retrieved spans for metric computation. `rapidfire_datahub_compat.py` patches the RapidFire dispatcher so it runs behind a JupyterHub proxy. The full experiment is in [`examples/rapidfire_grid_search.ipynb`](examples/rapidfire_grid_search.ipynb): it defines the config knobs, custom span-level retrieval metrics (precision / recall / F1 / MRR), runs the multi-config evals and exports the result tables.
-- **Evaluation tooling**. `evaluate_retrieval.py` computes span-based P/R/F1@k. `run_judge.py` scores answers with an LLM judge using the course-provided rubric (`src/project1_eval.py`, `data/judge_prompt.txt`).
+- **Evaluation tooling**. `evaluate_retrieval.py` computes span-based P/R/F1@k. `run_judge.py` scores answers with an LLM judge using the course-provided rubric (`src/eval_utils.py`, `data/judge_prompt.txt`).
 
 ## How it works
 
@@ -111,7 +111,7 @@ Same retrieval configuration for every generator (retrieval F1@2 = 0.7037 where 
 
 More results:
 
-- `results/hybrid_reranker_gridsearch_*.csv` and `results/exp1-*_metrics.csv`: the full RapidFire AI grid-search logs (one file per experiment run), covering chunking, `alpha`, pool sizes, reranking and generator choice.
+- `results/hybrid_reranker_gridsearch_*.csv` and `results/rapidfire_run_*_metrics.csv`: the full RapidFire AI grid-search logs (one file per experiment run), covering chunking, `alpha`, pool sizes, reranking and generator choice.
 - `results/generation_metrics.txt`: LLM-judge scores for 10 configurations on each question set.
 - `results/experiments_log_05042026.txt`: early baseline runs.
 
@@ -138,7 +138,7 @@ Python 3.10+ · FAISS · sentence-transformers (MiniLM / MPNet embeddings, MS MA
 │   ├── generator.py            # Token-budgeted context assembly, LLM calls, multi-query
 │   ├── rag_pipeline.py         # Orchestration, reranking, multi-query merge, retrieval logs
 │   ├── rapidfire_adapter.py    # RapidFire AI InferenceEngine wrapping RAGPipeline
-│   ├── project1_eval.py        # Course-provided metric + judge utilities
+│   ├── eval_utils.py           # Course-provided metric + judge utilities
 │   └── utils.py
 ├── data/
 │   ├── sourcedocs/             # RapidFire AI documentation corpus (third-party, see License)
@@ -259,7 +259,7 @@ Team course project for **UCSD CSE 234 (Data Systems for Machine Learning), Spri
 - **Sergi Marsol**: built the initial end-to-end RAG pipeline (loader, embeddings, FAISS retriever, generator, orchestration, CLI) and owned retrieval engineering. That covered the structure-aware RST chunking rewrite, hybrid BM25 + dense retrieval, FAISS normalization, parent-child chunking, wide-pool retrieval and reranking experiments, and multi-query retrieval. He also built the RapidFire AI integration (custom `InferenceEngine` adapter, DataHub compatibility patch, experiment notebooks) and ran most of the RapidFire grid searches that set the final default configuration. He integrated the course evaluation module and the evaluator refactors.
 - **Lillian Liu** ([@lillianyl](https://github.com/lillianyl)): LLM API integration and CLI flags, the LLM-as-judge evaluator, the initial cross-encoder reranking, the golden QA dataset (synthetic generation plus manual curation), embedding-model experiments, and the generation-quality and generator-model comparisons.
 
-Thanks to the RapidFire AI team for the open-source library and documentation, and to the CSE 234 course staff for the evaluation rubric and utilities (`src/project1_eval.py`, `data/judge_prompt.txt`).
+Thanks to the RapidFire AI team for the open-source library and documentation, and to the CSE 234 course staff for the evaluation rubric and utilities (`src/eval_utils.py`, `data/judge_prompt.txt`).
 
 ## License
 

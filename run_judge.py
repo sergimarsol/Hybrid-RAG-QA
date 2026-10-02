@@ -17,7 +17,7 @@ from typing import Dict, List, Optional
 import sys
 
 sys.path.insert(0, str(Path(__file__).parent))
-from src.project1_eval import call_judge
+from src.eval_utils import call_judge
 
 logging.basicConfig(
     level=logging.INFO,
@@ -70,7 +70,7 @@ def evaluate_generation(
         if isinstance(retrieved_context, list):
             retrieved_context = "\n\n".join(str(item) for item in retrieved_context)
 
-        # Use official call_judge from project1_eval
+        # Use official call_judge from eval_utils
         judge_result = call_judge(
             query=question,
             reference_answer=reference_answer,
